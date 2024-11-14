@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Spelling Bad</title>
+        <link rel="stylesheet" href="styleLogSign.css"/>
+        <link rel="shortcut icon" href="./images/icon.png" type="image/x-icon">
+    </head>
+    <body>
+        <header class="header">
+            <a href="/" class="logo-link">
+                <div class="logo">
+                    <img src="./images/icon.png" alt="Logo" />
+                </div>
+                <span class="logo-text">Spelling Bad</span>
+            </a>
+        </header>
+        <canvas id="alphabetCanvas"></canvas>
+        <div class="wrapper">
+            <main class="content">
+                <h1 id="judul">Log in</h1>
+                <div class="form">
+                    <input type="text" name="username" placeholder="username" id="username">
+                    <input type="password" name="password" placeholder="password" id="password">
+                    <p id="errorMsg"> Username atau password salah</p>
+                    <button id="button">Log in</button>
+                    <p id="bottomText">Tidak memiliki akun? <a href="/register"> Sign up</a></p> 
+                </div>               
+            </main>
+            <footer class="footer">
+                <div class="footer-content">
+                    <p class="footer-text">© 2024 Spelling Bad. All rights reserved.</p>
+                    <div class="footer-links">
+                        <a href="#about">About Us</a>
+                        <a href="#services">Services</a>
+                        <a href="#contact">Contact</a>
+                </div>
+                    <div class="footer-social">
+                        <a href="https://facebook.com" target="_blank">Facebook</a>
+                        <a href="https://twitter.com" target="_blank">Twitter</a>
+                        <a href="https://instagram.com" target="_blank">Instagram</a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <script src="scriptLogSign.js"></script>
+    </body>
+</html>

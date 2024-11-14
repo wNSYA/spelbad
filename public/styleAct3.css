@@ -1,0 +1,230 @@
+@font-face {
+    font-family: 'Lato';
+    src: url('./font/Lato-Bold.ttf') format('truetype');
+    
+}
+
+@font-face {
+    font-family: 'Cinzel';
+    src: url('./font/Cinzel-Regular.ttf') format('truetype');
+}
+
+
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', 'system-ui';
+}
+
+body, html {
+    height: 100%;
+    overflow-x: hidden;
+}
+
+#alphabetCanvas {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1; /* Send it behind everything */
+    background-color: #fdfdfd;
+}
+
+/* Main wrapper for content */
+.wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* Removed z-index here to avoid overlap */
+}
+
+/* Header styling */
+.header {
+    position: fixed; /* Fixed at the top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem 2rem;
+    background-color: rgba(34, 34, 34, 0.9);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 10; /* Ensures it stays on top */
+}
+
+/* Logo and text container */
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+}
+
+.logo img {
+    height: 40px;
+}
+
+.logo-text {
+    font-size: 1rem;
+    margin-left: 0.2rem;
+    color: #fff;
+    font-family: 'Cinzel', 'system-ui';
+    align-self: center;
+}
+
+/* Navigation styles */
+.nav {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.1s ease;
+    align-self: center;
+}
+
+.nav-link:hover {
+    color: #d6c489;
+}
+
+/* Main content */
+.content {
+    flex: 1;
+    padding: 2rem;
+    padding-top: 8.5rem; /* Offset for fixed header */
+    text-align: center;
+    z-index: 1; /* Places content above canvas */
+    margin: 0 auto;
+    padding-left: clamp(16px, 5%, 60px);
+    padding-right: clamp(16px, 5%, 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+/* Footer styling */
+.footer {
+    background-color: rgba(34, 34, 34, 0.9);
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+    z-index: 1; /* Ensures it appears above canvas */
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.footer-text {
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+.footer-links,
+.footer-social {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.footer-links a,
+.footer-social a {
+    color: #bbb;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.1s ease;
+}
+
+.footer-links a:hover,
+.footer-social a:hover {
+    color: #d6c489;
+}
+
+#judul {
+    font-family: 'Cinzel';
+    padding-bottom: 2.5vh;
+}
+
+#desc {
+    margin: 1rem;
+}
+
+#username {
+    font-family: 'Cinzel';
+}
+
+#answer {
+    display: flex;
+    padding: 0.7rem 1rem;
+    flex-direction: column;
+    align-items: baseline;
+    gap: 1rem;
+    text-align: center;
+}
+
+input[type="text"] {
+    padding: 5px;
+    margin-top: 5px;
+    margin-left: 1px;
+    margin-right: 1px;
+    width: auto;
+}
+
+/*botbutton*/
+#botButton {
+    display: flex;
+    width: 100%;
+    gap: 3px;
+    margin-top: 1rem;
+}
+
+button {
+    width: 100%;
+    border: none;
+    padding: 7px;
+    background-color: #0b0423;
+    color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    transition: transform 0.2s ease;
+}
+
+#button2 {
+    text-decoration: none;
+    width: 100%;
+    border: none;
+    height: fit-content;
+    padding: 7px;
+    background-color: #0b0423;
+    color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+button:hover {
+    cursor: pointer;
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+/* Responsive styling */
+@media (min-width: 600px) {
+    .footer-content {
+        flex-direction: row;
+        justify-content: space-between;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+}
