@@ -13,6 +13,10 @@ window.onload = () => {
     }
     else {
         nav3.style.display = "none";
+        resetActivity.style.display = "none";
+        document.querySelectorAll('.card').forEach(link => {
+            link.href = "/login";
+        });
     }
 
 }
@@ -21,6 +25,7 @@ nav3.onclick = () => {
     sessionStorage.clear();
     location.reload();
 }
+
 
 resetActivity.onclick = () => {
     sessionStorage.act1 = '0';
