@@ -190,23 +190,6 @@ function nextPage(){
         button4.style.display = "none";
         button3.style.display = "none";
         button2.style.display = "block";
-        fetch('/completion-status-2', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ email:sessionStorage.email, page:Number(sessionStorage.act2)})
-          })
-          .then(response => {
-            if (response.ok) {
-              console.log('Completion status sent successfully');
-            } else {
-              console.error('Error sending completion status');
-            }
-          })
-          .catch(error => {
-            console.error('Error sending completion status:', error);
-          });
     }
     else{
         answer.style.display = "flex";
@@ -224,6 +207,23 @@ function nextPage(){
     rectangle4.innerText = page[Number(sessionStorage.act2)].recText[3];
     rectangle5.innerText = page[Number(sessionStorage.act2)].recText[4];
 
+    fetch('/completion-status-2', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email:sessionStorage.email, page:Number(sessionStorage.act2)})
+      })
+      .then(response => {
+        if (response.ok) {
+          console.log('Completion status sent successfully');
+        } else {
+          console.error('Error sending completion status');
+        }
+      })
+      .catch(error => {
+        console.error('Error sending completion status:', error);
+      });
 }
 
 function toggle(rec){

@@ -70,23 +70,6 @@ function nextPage(){
         button3.style.display = "none";
         button4.style.display = "none";
         answer.style.display = "none";
-        fetch('/completion-status-3', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ email:sessionStorage.email, page:Number(sessionStorage.act3)})
-          })
-          .then(response => {
-            if (response.ok) {
-              console.log('Completion status sent successfully');
-            } else {
-              console.error('Error sending completion status');
-            }
-          })
-          .catch(error => {
-            console.error('Error sending completion status:', error);
-          });
     }
     else{
         input1.value = '';
@@ -104,7 +87,23 @@ function nextPage(){
         button3.onclick = reset;
         button4.onclick = hint;
     }
-
+    fetch('/completion-status-3', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email:sessionStorage.email, page:Number(sessionStorage.act3)})
+      })
+      .then(response => {
+        if (response.ok) {
+          console.log('Completion status sent successfully');
+        } else {
+          console.error('Error sending completion status');
+        }
+      })
+      .catch(error => {
+        console.error('Error sending completion status:', error);
+      });
 }
 
 function check() {
