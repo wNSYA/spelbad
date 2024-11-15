@@ -172,4 +172,22 @@ app.post('/completion-status-1',(req,res) => {
         });
 })
 
+app.post('/activity-reset', (req, res) => {
+  const { email } = req.body;
+  console.log(`Resetting activities for user: ${email}`);
+
+  pool.query(
+      'UPDATE users SET act1 = 0, act2 = 0, act3 = 0 WHERE email = $1',
+      [email]
+  )
+      .then(() => {
+          console.log('Activity reset successful');
+          res.json({ message: 'Activity reset successful' });
+      })
+      .catch((error) => {
+          console.error('Error resetting activities:', error);
+          res.status(500).json({ message: 'Error resetting activities' });
+      });
+});
+
 module.exports = app;

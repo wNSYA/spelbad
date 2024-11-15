@@ -2,6 +2,8 @@ const username = document.getElementById('username');
 const nav1 = document.getElementById('navigation1');
 const nav2 = document.getElementById('navigation2');
 const nav3 = document.getElementById('navigation3');
+const resetActivity = document.getElementById('resetActivity');
+
 
 window.onload = () => {
     if(sessionStorage.name){
@@ -19,6 +21,37 @@ nav3.onclick = () => {
     sessionStorage.clear();
     location.reload();
 }
+
+resetActivity.onclick = () => {
+    sessionStorage.act1 = '0';
+    sessionStorage.act2 = '0';
+    sessionStorage.act3 = '0';
+
+    fetch('/activity-reset', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: sessionStorage.email })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+    })
+    .then(data => {
+        console.log('Activities reset successfully:', data);
+        // You might want to update the UI or show a success message here
+        return data;
+    })
+    .catch(error => {
+        console.error('Error resetting activities:', error);
+        // Handle the error appropriately (e.g., show an error message to the user)
+        throw error;
+    });
+    location.reload();
+}    
+
 // for canvas
 const canvas = document.getElementById('alphabetCanvas');
 const ctx = canvas.getContext('2d');

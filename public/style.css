@@ -163,6 +163,12 @@ body, html {
     font-family: 'Cinzel';
 }
 
+#resetActivity {
+    font-size: small;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 
 /* Container for cards */
 .card-container {
@@ -223,5 +229,8 @@ body, html {
         justify-content: space-between;
         max-width: 1000px;
         margin: 0 auto;
+    }
+    #resetActivity {
+        margin-top: 2rem;
     }
 }
