@@ -52,7 +52,17 @@ if (nama == null) {
         })
         .then(res => res.json())
         .then(data =>{
-            validateData(data);
+            if (!data.name){
+                showError(data);
+            }
+            else {
+                sessionStorage.name = data.name;
+                sessionStorage.email = data.email;
+                sessionStorage.act1 = 0;
+                sessionStorage.act2 = 0;
+                sessionStorage.act3 = 0;
+                location.href = '/';
+            }
         })
     })
 }
