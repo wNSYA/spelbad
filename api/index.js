@@ -78,40 +78,43 @@ app.post('/register-user', (req, res) => {
 app.post('/login-user', (req, res) => {
   const { email, password } = req.body;
 
-  console.log(`there is login detected from ${email}`);
+  console.log(`Login attempt detected from: ${email}`);
 
   pool.query(
     'SELECT name, email, act1, act2, act3, password FROM users WHERE email = $1',
     [email]
   )
     .then(data => {
-      console.log(data.rows);
-
-      if (data.rows.length) {
-        const hashedPassword = data.rows[0].password;
-        bcrypt.compare(password, hashedPassword)
-          .then(result => {
-            if (result) {
-              // Passwords match, return user data
-              const { name, email, act1, act2, act3 } = data.rows[0];
-              res.json({ name, email, act1, act2, act3 });
-            } else {
-              res.json('email atau password yang dimasukkan salah');
-            }
-          })
-          .catch(err => {
-            console.error('Error comparing passwords:', err);
-            res.status(500).json('Terjadi kesalahan saat login');
-          });
-      } else {
-        res.json('email atau password yang dimasukkan salah');
+      if (data.rows.length === 0) {
+        // User not found
+        return res.status(401).json({ message: 'Invalid email or password' });
       }
+
+      const user = data.rows[0];
+      const hashedPassword = user.password;
+
+      bcrypt.compare(password, hashedPassword)
+        .then(match => {
+          if (match) {
+            // Login successful
+            const { name, email, act1, act2, act3 } = user;
+            res.status(200).json({ name, email, act1, act2, act3 });
+          } else {
+            // Password mismatch
+            res.status(401).json({ message: 'Invalid email or password' });
+          }
+        })
+        .catch(err => {
+          console.error('Error comparing passwords:', err);
+          res.status(500).json({ message: 'Internal server error' });
+        });
     })
     .catch(err => {
       console.error('Error querying database:', err);
-      res.status(500).json('Terjadi kesalahan saat login');
+      res.status(500).json({ message: 'Internal server error' });
     });
 });
+
 
   app.post('/completion-status-2', (req, res) => {
     const { email, page } = req.body;
